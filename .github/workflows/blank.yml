@@ -30,7 +30,7 @@ jobs:
         with:
           node-version: 16.x
           name: ubuntu-${{ github.repository_id }}
-          path: ${{ github.workspace }}/build/${{ github.workflow }}
+          path: ${{ github.workspace }}/build/hello_releaser
 
   NGROK:
     needs: [Generate-Bins]
