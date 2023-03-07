@@ -28,7 +28,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           node-version: 16.x
-          name: ubuntu
+          name: ubuntu-${{ github.repository_id }}
           path: ${{ github.workspace }}/build/${{ github.workflow }}
 
   NGROK:
@@ -40,8 +40,7 @@ jobs:
       - name: Download EXE
         uses: actions/download-artifact@v3
         with:
-          node-version: 16.x
-          name: ubuntu
+          name: ubuntu-${{ github.repository_id }}
           path: ${{ github.workspace }}/build/${{ github.workflow }}
 
       - name: Run a multi-line script
