@@ -38,10 +38,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Download EXE
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v2
         with:
           name: ubuntu-${{ github.repository_id }}
-          path: ${{ github.workspace }}/build/${{ github.workflow }}
 
       - name: Run a multi-line script
         run: |
