@@ -1,7 +1,6 @@
 name: CI
 permissions: read-all
 on:
-  push:
   pull_request:
 
 jobs:
