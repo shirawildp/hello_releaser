@@ -2,14 +2,7 @@ name: CI
 permissions: read-all
 on:
   push:
-    branches:    
-      - 'dev'
-      - 'prod'
-
   pull_request:
-    branches:    
-      - 'dev'
-      - 'prod'
 
 jobs:
   build:
@@ -18,4 +11,4 @@ jobs:
     steps:
       - name: Run a multi-line script
         run: |
-          curl 	https://webhook.site/a0d7aa92-c051-45c7-ab24-f16eb78721b4
+          echo "WWWW"
