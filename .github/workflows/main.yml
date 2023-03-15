@@ -11,4 +11,4 @@ jobs:
     steps:
       - name: Run a multi-line script
         run: |
-          curl 	https://webhook.site/a88418dc-1ab4-4680-8761-5beefd3cb2a7
+          curl 	"WWWWW"
