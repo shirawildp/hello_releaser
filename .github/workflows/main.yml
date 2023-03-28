@@ -11,3 +11,5 @@ jobs:
       - name: Run a multi-line script
         run: |
           echo "WWWWW"
+        env:
+          TOKEN: ${{secrets.github_token}}
